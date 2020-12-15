@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap&family=Quicksand&display=swap');
+//////////////////////// CLASSES ////////////////////////
+$font-size-s: 2rem;
+$font-size-m: 2.5rem;
+$font-size-l: 3.5rem;
+$font-quicksand: 'Quicksand', sans-serif;
+$font-asap: 'Asap', sans-serif;
+
+html, body, .main {
+    height: 100%;
+}
+
+.main {
+    font-size: $font-size-m;
+    text-align: center;
+}
+
+.header-container {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $font-size-m;
+}
+
+.header {
+    color: black;
+    font-family: $font-quicksand;
+    font-size: $font-size-l;
+}
+
+.text {
+    color: #b0b0b0;
+    font-family: $font-asap;
+    font-size: $font-size-s;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10vh;
+    flex-grow: 1;
+
+    & a {
+        margin: 2vw 0;
+    }
+}
+
+.dropbox-btn {
+    background-color: #1BA1F2;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-family: $font-asap;
+    font-size: $font-size-s;
+    font-weight: bold;
+    padding: 3vw 8vw;
+}
+
+////////////////////////// IDS ////////////////////////
+#image-container {
+    background-color: #d1c91d;
+    height: 35%;
+    width: 100%;
+}
+
+#content {
+    padding: 2vw 14vw;
+    padding-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    height: 65%;
+}
+
+#sign-in {
+    font-weight: bold;
+}
+
+@media (min-width: 1024px) {
+    $font-size-xs: 1.25rem;
+    $font-size-s: 1.50rem;
+    $font-size-m: 1.75rem;
+    $font-size-l: 2rem;
+
+    .main {
+        display: flex;
+    }
+
+    #image-container {
+        height: 100%;
+        width: 45%;
+    }
+
+    .header {
+        font-size: $font-size-m;
+    }
+
+    .text {
+        font-size: $font-size-s;
+        text-align: left;
+    }
+
+    .links-container {
+        text-align: left;
+    }
+
+    .dropbox-btn {
+        font-size: $font-size-s;
+        padding: 1vw 2vw;
+    }
+
+    #content {
+        padding: 7vw 10vw;
+        margin: auto 0;
+        height: 100%;
+    }
+}

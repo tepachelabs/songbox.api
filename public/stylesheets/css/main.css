@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap&family=Quicksand&display=swap");
+html, body, .main {
+  height: 100%; }
+
+.main {
+  font-size: 2.5rem;
+  text-align: center; }
+
+.header-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5rem; }
+
+.header {
+  color: black;
+  font-family: "Quicksand", sans-serif;
+  font-size: 3.5rem; }
+
+.text {
+  color: #b0b0b0;
+  font-family: "Asap", sans-serif;
+  font-size: 2rem; }
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10vh;
+  flex-grow: 1; }
+  .buttons-container a {
+    margin: 2vw 0; }
+
+.dropbox-btn {
+  background-color: #1BA1F2;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  font-family: "Asap", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 3vw 8vw; }
+
+#image-container {
+  background-color: #d1c91d;
+  height: 35%;
+  width: 100%; }
+
+#content {
+  padding: 2vw 14vw;
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  height: 65%; }
+
+#sign-in {
+  font-weight: bold; }
+
+@media (min-width: 1024px) {
+  .main {
+    display: flex; }
+  #image-container {
+    height: 100%;
+    width: 45%; }
+  .header {
+    font-size: 1.75rem; }
+  .text {
+    font-size: 1.5rem;
+    text-align: left; }
+  .links-container {
+    text-align: left; }
+  .dropbox-btn {
+    font-size: 1.5rem;
+    padding: 1vw 2vw; }
+  #content {
+    padding: 7vw 10vw;
+    margin: auto 0;
+    height: 100%; } }
