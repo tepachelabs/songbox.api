@@ -55,7 +55,7 @@ router.get('/file/*', auth, (req, res) => {
         createLink(dbx, decodedPath, '')
             .then((file) => {
                 const clearFile = {
-                    url: file.result.url
+                    url: file.result.link,
                 };
 
                 if (file.status !== 200) {
@@ -72,7 +72,5 @@ router.get('/file/*', auth, (req, res) => {
         res.status(400).json(error);
     }
 });
-
-
 
 module.exports = router;
