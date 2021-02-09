@@ -28,7 +28,7 @@ $ cd songbox.api
 $ npm install
 $ npm start
 
-# Now you can make request at http://localhost:4000
+# Now you can make requests at http://localhost:4000
 ```
 
 ## System requirements
