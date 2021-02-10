@@ -77,25 +77,6 @@ DATABASE_NAME=<Database name>
 ```
 
 ## API
-```
-** 1. GET -> /api/files/*
-All files will be fetch from the path (*) -> /api/file/music/example
+Checkout the API [examples](https://documenter.getpostman.com/view/13525268/TW77f2pU).
 
-** 2. GET -> /api/file/*
-Fetch a specific file link from the path (*) -> /api/file/music/example/route.mp3
-
-** 3. GET -> /api/favorites
-Fetch ALL songs marked as favorite.
-
-** 4. POST -> /api/favorite
-Marks a song file as favorite.
-
-** 5. DELETE -> /api/favorite
-Unmarks a song file from favorites.
-
-** 6. GET -> /api/me
-Fetch the basic of user from they're Dropbox account.
-
-Checkout the examples -> https://documenter.getpostman.com/view/13525268/TW77f2pU
-```
 Checkout the [webapp repository](https://github.com/tepachelabs/songbox.webapp) to set up the whole project.
