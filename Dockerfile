@@ -1,4 +1,4 @@
-FROM node:10-alpine as songbox-api
+FROM node:14-alpine as songbox-api
 LABEL maintainer="tonymtz <hello@tonymtz.com>"
 WORKDIR /app
 COPY . .
