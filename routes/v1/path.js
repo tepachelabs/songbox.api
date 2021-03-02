@@ -2,15 +2,19 @@ const express = require('express');
 const dropbox = require('dropbox');
 
 const auth = require('../../middleware/auth');
+const models = require('../../models');
+
+const Favorite = models.Favorite;
 
 const router = express.Router();
 
 router.get('/:path*?', auth, async (req, res) => {
   try {
-    const { token, path } = req;
+    const { token, path, userId } = req;
     const dbx = new dropbox.Dropbox({ accessToken: token });
     const cleanedPath = path === '/' ? '' : decodeURI(path);
     const { result } = await dbx.filesListFolder({ path: cleanedPath });
+    const favorites = await Favorite.findAll({ where: { userId } });
 
     const pathsList = result.entries.reduce((collection, current) => {
       const newPath = {
@@ -20,6 +24,9 @@ router.get('/:path*?', auth, async (req, res) => {
 
       if (current['.tag'] === 'file') {
         if (/\.?(mp3|ogg|wav)/.test(newPath.name)) {
+          const favoriteRecord = favorites.find(element => element.name === newPath.name);
+          newPath.isFavorite = !!favoriteRecord;
+          newPath.favoriteId = favoriteRecord?.id || null;
           collection.files.push(newPath);
         }
       } else {

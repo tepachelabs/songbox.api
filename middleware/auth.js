@@ -1,4 +1,7 @@
 const dropbox = require('dropbox');
+const models = require('../models');
+
+const User = models.User;
 
 const auth = async (req, res, next) => {
   try {
@@ -18,8 +21,11 @@ const auth = async (req, res, next) => {
       throw "No user found";
     }
 
+    const { id: userId } = await User.findOne({ where: { email } });
+
     req.account_id = account_id;
     req.email = email;
+    req.userId = userId;
     req.token = bearerToken;
 
     next();
