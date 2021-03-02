@@ -6,15 +6,8 @@ const logger = require('morgan');
 const cors = require('cors');
 const sassMiddleware = require('node-sass-middleware');
 
-const filesRouter = require('./routes/files');
-const indexRouter = require('./routes/index');
-const loginRouter = require('./routes/login');
-const meRouter = require('./routes/me');
-const pricingRouter = require('./routes/pricing');
-const privacyRouter = require('./routes/privacy');
-const termsRouter = require('./routes/termsOfService');
-const favoritesRouter = require('./routes/favorite');
 const authRouter = require('./routes/auth');
+const v1Router = require('./routes/v1');
 
 const app = express();
 
@@ -29,41 +22,33 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(sassMiddleware({
-    src: path.join(__dirname, 'public/stylesheets/sass'),
-    dest: path.join(__dirname, 'public/stylesheets/css'),
-    debug: true,
-    // outputStyle: 'expanded',
-    prefix: '/stylesheets/css'
+  src: path.join(__dirname, 'public/stylesheets/sass'),
+  dest: path.join(__dirname, 'public/stylesheets/css'),
+  debug: true,
+  prefix: '/stylesheets/css'
 }));
 
 app.use('/auth', authRouter);
-app.use('/api', filesRouter);
-app.use('/api', favoritesRouter);
-app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/api', meRouter);
-app.use('/pricing', pricingRouter);
-app.use('/privacy', privacyRouter);
-app.use('/terms-of-service', termsRouter);
+app.use('/v1', v1Router);
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/app/index.html'));
+  res.sendFile(path.join(__dirname, 'public/app/index.html'));
 });
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-    next(createError(404));
+  next(createError(404));
 });
 
 // error handler
 app.use((err, req, res) => {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
 module.exports = app;

@@ -12,7 +12,7 @@
     "rules": {
         "semi": "error",
         "no-unused-vars":"warn",
-        "indent": ["error", 4],
+        "indent": ["error", 2],
         "no-process-env": "off"
     }
 }
