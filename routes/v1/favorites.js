@@ -1,4 +1,5 @@
 const express = require('express');
+const dropbox = require('dropbox');
 
 const auth = require('../../middleware/auth');
 const models = require('../../models');
@@ -9,8 +10,21 @@ const router = express.Router();
 
 router.get('/', auth, async (req, res) => {
   try {
-    const { userId } = req;
+    const { token, userId } = req;
     const favorites = await Favorite.findAll({ where: { userId } });
+    const dbx = new dropbox.Dropbox({ accessToken: token });
+
+    const metadataResults = await Promise.all(
+      favorites.map(({ path }) => dbx.filesGetMetadata({ path, include_deleted: true }))
+    );
+    const brokenLinks = metadataResults
+      .filter(({ result }) => result['.tag'] === 'deleted')
+      .reduce((acc, { result }) => {
+        return {
+          [result['path_lower']]: true,
+          ...acc
+        };
+      }, {});
 
     const favoritesPayload = favorites.map(
       favorite => ({
@@ -18,6 +32,7 @@ router.get('/', auth, async (req, res) => {
         path: favorite.path,
         favoriteId: favorite.id,
         isFavorite: true,
+        isBroken: !!brokenLinks[favorite.path],
       })
     );
 

@@ -8,7 +8,7 @@ const favoritesRouter = require('./favorites');
 
 const router = express.Router();
 
-router.use(cors({ origin: 'https://songbox.io'}));
+router.use(cors({ origin: ['https://songbox.io', 'http://localhost:3000'] }));
 router.use('/me', meRouter);
 router.use('/path', pathRouter);
 router.use('/stream_link', streamLinkRouter);
