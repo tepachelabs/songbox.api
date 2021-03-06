@@ -10,11 +10,13 @@ router.get('/:path*?', auth, async (req, res) => {
     const { token, path } = req;
     const dbx = new dropbox.Dropbox({ accessToken: token });
     const { result } = await dbx.filesGetTemporaryLink({ path: decodeURI(path) });
+    const { name, path_lower: pathLower } = result.metadata;
 
     res.json({
-      name: result.metadata['name'],
-      path: result.metadata['path_lower'],
-      src: result.link
+      name,
+      path: pathLower,
+      src: result.link,
+      parentPath: pathLower.replace(`/${ name.toLowerCase() }`, '')
     });
   } catch (error) {
     res.status(400).json(error);
